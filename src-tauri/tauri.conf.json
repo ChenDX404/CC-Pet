@@ -1,0 +1,58 @@
+{
+  "$schema": "https://raw.githubusercontent.com/nicedoc/schemas/main/tauri-conf-2.schema.json",
+  "productName": "CC Pet",
+  "version": "0.1.0",
+  "identifier": "com.ccpet.desktop",
+  "build": {
+    "beforeDevCommand": "",
+    "beforeBuildCommand": "npm run desktop:prepare",
+    "frontendDist": "../dist-pet"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "title": "CC Pet",
+        "width": 210,
+        "height": 228,
+        "resizable": false,
+        "decorations": false,
+        "alwaysOnTop": true,
+        "shadow": false,
+        "skipTaskbar": true,
+        "transparent": true,
+        "center": false
+      },
+      {
+        "label": "settings",
+        "title": "CC Pet 控制中心",
+        "url": "settings.html",
+        "width": 920,
+        "height": 720,
+        "minWidth": 680,
+        "minHeight": 560,
+        "visible": false,
+        "resizable": true,
+        "decorations": true,
+        "alwaysOnTop": false,
+        "skipTaskbar": false,
+        "transparent": false,
+        "center": true
+      }
+    ]
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "publisher": "CC Pet",
+    "icon": ["icons/icon.ico"],
+    "windows": {
+      "webviewInstallMode": { "type": "downloadBootstrapper" },
+      "nsis": {
+        "installMode": "currentUser",
+        "displayLanguageSelector": false,
+        "languages": ["SimpChinese", "English"]
+      }
+    }
+  }
+}

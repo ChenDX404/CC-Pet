@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  ${cspMeta}
+  <link rel="stylesheet" href="${cssUri}">
+  <title>CC Pet 控制中心</title>
+</head>
+<body>
+  <div class="desktop-app">
+    <aside class="app-rail">
+      <div class="app-brand" title="CC Pet">
+        <img src="${appIconUri}" alt="">
+      </div>
+      <nav class="app-nav" aria-label="设置导航">
+        <button class="nav-button active" type="button" data-page-target="pet" aria-label="桌宠">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 18V9l3-4 4 3 4-3 3 4v9l-3 2H8l-3-2Z"/><path d="M9 14h.01M15 14h.01"/></svg>
+          <span>桌宠</span>
+        </button>
+        <button class="nav-button" type="button" data-page-target="actions" aria-label="动作">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 3 1.5 3.5L13 8l-3.5 1.5L8 13 6.5 9.5 3 8l3.5-1.5L8 3Z"/><path d="m17 12 1.2 2.8L21 16l-2.8 1.2L17 20l-1.2-2.8L13 16l2.8-1.2L17 12Z"/></svg>
+          <span>动作</span>
+        </button>
+        <button class="nav-button" type="button" data-page-target="runtime" aria-label="运行">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.8 1.8 0 0 0 .36 2l.06.06-2.76 2.76-.06-.06a1.8 1.8 0 0 0-2-.36 1.8 1.8 0 0 0-1.1 1.65V21H10v-.09A1.8 1.8 0 0 0 8.9 19.3a1.8 1.8 0 0 0-2 .36l-.06.06-2.76-2.76.06-.06a1.8 1.8 0 0 0 .36-2A1.8 1.8 0 0 0 2.85 13H2V9h.85A1.8 1.8 0 0 0 4.5 7.9a1.8 1.8 0 0 0-.36-2l-.06-.06L6.84 3.1l.06.06a1.8 1.8 0 0 0 2 .36A1.8 1.8 0 0 0 10 1.87V2h4v-.13a1.8 1.8 0 0 0 1.1 1.65 1.8 1.8 0 0 0 2-.36l.06-.06 2.76 2.76-.06.06a1.8 1.8 0 0 0-.36 2A1.8 1.8 0 0 0 21.15 9H22v4h-.85A1.8 1.8 0 0 0 19.4 15Z"/></svg>
+          <span>运行</span>
+        </button>
+      </nav>
+      <button class="nav-button about-button" type="button" data-page-target="about" aria-label="关于">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></svg>
+        <span>关于</span>
+      </button>
+    </aside>
+
+    <section class="app-shell">
+      <header class="app-topbar">
+        <div>
+          <h1 id="page-title">桌宠设备</h1>
+          <p id="page-subtitle">选择人物并调整它在桌面上的显示方式。</p>
+        </div>
+        <div class="connection-state"><i></i><span id="host-badge">桌面端已连接</span></div>
+        <button id="save-btn" class="primary-button" type="button">保存更改</button>
+      </header>
+
+      <main class="page-viewport">
+        <section class="app-page active" data-page="pet">
+          <div class="device-grid">
+            <article class="device-stage">
+              <div class="device-copy">
+                <span class="eyebrow">ACTIVE DESKTOP PET</span>
+                <h2 id="active-pet-name">正在读取人物…</h2>
+                <p>每个人物拥有独立的动作与事件配置。</p>
+                <label class="field-label" for="pet-select">当前人物</label>
+                <select id="pet-select"></select>
+                <div id="pet-format" class="pet-format" hidden></div>
+              </div>
+              <div class="pet-orbit" aria-label="当前人物预览">
+                <div class="orbit-ring"></div>
+                <div id="pet-preview" class="pet-preview" role="img" aria-label="当前人物第一帧"></div>
+              </div>
+            </article>
+
+            <article class="control-card">
+              <div class="card-heading"><h3>人物大小</h3><output id="pet-scale-value">100%</output></div>
+              <p>拖动滑块时可在桌面实时预览。</p>
+              <div class="scale-track">
+                <span>50%</span>
+                <input id="pet-scale" type="range" min="50" max="150" step="5" value="100">
+                <span>150%</span>
+              </div>
+              <button id="pet-scale-reset" class="secondary-button" type="button">恢复默认大小</button>
+            </article>
+          </div>
+
+          <article class="source-card">
+            <div class="source-copy">
+              <h3>人物资源目录</h3>
+              <p>自动扫描 Codex pets 根目录下的所有人物文件夹。</p>
+            </div>
+            <div class="source-controls">
+              <input id="pets-root" type="text" spellcheck="false" placeholder="未检测到时请手动填写">
+              <button id="pets-root-browse" class="secondary-button" type="button">浏览</button>
+              <button id="pets-refresh" class="secondary-button" type="button">重新扫描</button>
+            </div>
+            <div id="pets-status" class="source-status"></div>
+          </article>
+        </section>
+
+        <section class="app-page" data-page="actions">
+          <div class="page-intro">
+            <div><h2>动作映射</h2><p>动作名称、帧数、播放速度和触发事件会保存到当前人物的独立配置。</p></div>
+            <div class="format-badge">同一事件只能绑定一个动作</div>
+          </div>
+          <div class="action-table">
+            <div class="action-table-head">
+              <span>行</span><span>动作名称</span><span>帧数</span><span>播放速度</span><span>触发事件</span>
+            </div>
+            <div id="rows-container" class="rows-container"></div>
+          </div>
+        </section>
+
+        <section class="app-page" data-page="runtime">
+          <div class="page-intro"><div><h2>运行设置</h2><p>控制桌宠窗口、Windows 启动行为和托盘驻留方式。</p></div></div>
+          <div class="runtime-grid">
+            <article class="runtime-card">
+              <div class="runtime-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+              </div>
+              <div><h3>显示桌宠</h3><p>在桌面显示透明、始终置顶的人物窗口。</p></div>
+              <label class="switch"><input id="desktop-toggle" type="checkbox"><i></i></label>
+            </article>
+            <article class="runtime-card">
+              <div class="runtime-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v8"/><path d="M6.3 5.3a8 8 0 1 0 11.4 0"/></svg>
+              </div>
+              <div><h3>开机启动</h3><p>登录 Windows 后自动在后台启动 CC Pet。</p></div>
+              <label class="switch"><input id="autostart-toggle" type="checkbox"><i></i></label>
+            </article>
+            <article class="runtime-card full">
+              <div class="runtime-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v12H7l-3 3V5Z"/><path d="M8 9h8M8 13h5"/></svg>
+              </div>
+              <div><h3>系统托盘</h3><p>关闭设置窗口后，桌宠仍会在托盘运行。可从托盘菜单重新打开设置、显示或隐藏桌宠，以及完全退出。</p></div>
+              <span class="state-label">始终启用</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="app-page" data-page="about">
+          <div class="about-panel">
+            <img src="${appIconUri}" alt="CC Pet">
+            <span class="eyebrow">DESKTOP COMPANION</span>
+            <h2>CC Pet</h2>
+            <p>把编码智能体的工作状态变成人物动作。</p>
+            <div class="version-line"><span>桌面端版本</span><strong>0.1.0</strong></div>
+            <div class="version-line"><span>运行框架</span><strong>Tauri 2</strong></div>
+            <div class="version-line"><span>配置位置</span><strong>%APPDATA%\CC Pet</strong></div>
+          </div>
+        </section>
+      </main>
+    </section>
+  </div>
+  <div id="desktop-toast" class="desktop-toast" role="status" aria-live="polite"></div>
+  ${hostScript}
+  <script src="${desktopJsUri}"></script>
+  <script ${nonceAttribute} src="${jsUri}"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+{
+  "name": "cc-pet",
+  "displayName": "CC Pet",
+  "description": "把 Claude Code 工作状态变成可配置的桌面宠物动画",
+  "version": "0.1.0",
+  "publisher": "cc-pet",
+  "extensionKind": ["ui"],
+  "keywords": ["Claude Code", "desktop pet", "桌宠", "animation", "productivity"],
+  "galleryBanner": {
+    "color": "#1f2430",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.125.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "CC Pet",
+      "properties": {
+        "ccPet.petsRootDirectory": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Codex 宠物根目录。留空时自动使用当前用户的 `~/.codex/pets`；也可以在 CC Pet GUI 中填写或浏览选择。"
+        },
+        "ccPet.autoLaunchDesktop": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "GUI 桌面浮窗开关。是否在 VS Code 启动时自动打开桌面窗口。"
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "cc-pet-binding",
+          "title": "CC Pet: 动作绑定",
+          "icon": "$(smiley)"
+        }
+      ]
+    },
+    "views": {
+      "cc-pet-binding": [
+        {
+          "type": "webview",
+          "id": "cc-pet.bindingView",
+          "name": "动作绑定"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "desktop:prepare": "node scripts/sync-desktop-assets.mjs",
+    "desktop:build": "npm run desktop:prepare && tauri build",
+    "extension:stage-binary": "node scripts/stage-vscode-binary.mjs",
+    "extension:package": "npm run compile && npm run extension:stage-binary && vsce package --target win32-x64 --out releases/cc-pet-win32-x64.vsix",
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.11.4",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "24.x",
+    "@types/vscode": "^1.125.0",
+    "@vscode/test-cli": "^0.0.15",
+    "@vscode/test-electron": "^3.0.0",
+    "@vscode/vsce": "^3.9.2",
+    "eslint": "^10.5.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.61.1"
+  },
+  "overrides": {
+    "diff": "^8.0.4",
+    "serialize-javascript": "^7.0.6"
+  }
+}

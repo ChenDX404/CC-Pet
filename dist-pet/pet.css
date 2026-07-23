@@ -1,0 +1,5 @@
+html,body{height:100%;margin:0;overflow:hidden;background:transparent}
+[hidden]{display:none!important}
+.pet-stage{position:relative;width:100vw;height:100vh}
+.pet{user-select:none;-webkit-user-select:none}
+.pet.dragging{cursor:grabbing}

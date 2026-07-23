@@ -1,0 +1,87 @@
+{
+  "comment": "CC Pet 桌宠配置文件。修改后 Shift+F5 → F5 重启生效，无需重新编译。",
+  "sheetWidth": 1536,
+  "sheetHeight": 2288,
+  "colWidth": 192,
+  "rowHeight": 208,
+  "displayScale": 0.7,
+  "selectedPetId": "xiuxiu",
+  "rows": [
+    {
+      "row": 1,
+      "frames": 7,
+      "speed": 0.5,
+      "name": "静态"
+    },
+    {
+      "row": 2,
+      "frames": 8,
+      "speed": 1,
+      "name": "向右跑"
+    },
+    {
+      "row": 3,
+      "frames": 8,
+      "speed": 1,
+      "name": "向左跑"
+    },
+    {
+      "row": 4,
+      "frames": 4,
+      "speed": 1,
+      "name": "挥手"
+    },
+    {
+      "row": 5,
+      "frames": 5,
+      "speed": 1,
+      "name": "请安"
+    },
+    {
+      "row": 6,
+      "frames": 8,
+      "speed": 1,
+      "name": "闭眼"
+    },
+    {
+      "row": 7,
+      "frames": 6,
+      "speed": 1,
+      "name": "双手摊开"
+    },
+    {
+      "row": 8,
+      "frames": 6,
+      "speed": 0.5,
+      "name": "织东西"
+    },
+    {
+      "row": 9,
+      "frames": 6,
+      "speed": 1,
+      "name": "向左歪头"
+    },
+    {
+      "row": 10,
+      "frames": 8,
+      "speed": 1,
+      "name": "抬头"
+    },
+    {
+      "row": 11,
+      "frames": 8,
+      "speed": 1,
+      "name": "向左转身"
+    }
+  ],
+  "bindings": {
+    "drag-left": "向左跑",
+    "drag-right": "向右跑",
+    "click": "请安",
+    "appear": "挥手",
+    "cc-working": "织东西",
+    "cc-complete": "双手摊开",
+    "idle-loop": "静态",
+    "hover": "闭眼"
+  }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  ${cspMeta}
+  <link rel="stylesheet" href="${cssUri}">
+  <title>CC Pet 设置</title>
+</head>
+<body>
+  <header class="settings-hero">
+    <div class="hero-mark" aria-hidden="true"><span></span></div>
+    <div><h1>CC Pet</h1><p>把编码状态变成人物动作</p></div>
+    <span id="host-badge" class="host-badge">VS Code</span>
+  </header>
+  <main class="settings-layout">
+    <section class="settings-sidebar">
+      <section class="pet-source settings-panel">
+        <div class="source-title">人物来源</div>
+        <label class="source-label" for="pets-root">Codex pets 根目录</label>
+        <div class="source-controls">
+          <input id="pets-root" type="text" spellcheck="false" placeholder="未检测到时请手动填写">
+          <button id="pets-root-browse" type="button">浏览</button>
+          <button id="pets-refresh" type="button">刷新</button>
+        </div>
+        <label class="source-label" for="pet-select">桌面人物</label>
+        <select id="pet-select"></select>
+        <div id="pet-format" class="pet-format" hidden></div>
+        <div id="pets-status" class="source-status"></div>
+      </section>
+      <section class="settings-panel runtime-panel">
+        <div class="source-title">运行方式</div>
+        <div class="toggle-row">
+          <label class="toggle-label"><input id="desktop-toggle" type="checkbox"><span>显示桌宠</span></label>
+          <span class="toggle-desc">在桌面显示透明浮窗</span>
+        </div>
+      </section>
+      <section class="scale-row settings-panel">
+        <div class="scale-header"><span>人物大小</span><output id="pet-scale-value">100%</output></div>
+        <div class="scale-controls">
+          <span>50%</span><input id="pet-scale" type="range" min="50" max="150" step="5" value="100"><span>150%</span>
+          <button id="pet-scale-reset" class="scale-reset" type="button">恢复默认</button>
+        </div>
+      </section>
+    </section>
+    <section class="actions-panel">
+      <div class="actions-heading">
+        <div><h2>动作与事件</h2><p>当前人物的动作、速度和事件绑定会独立保存。</p></div>
+        <div class="binding-toolbar"><button id="save-btn" class="btn-primary" type="button">保存修改</button></div>
+      </div>
+      <div id="rows-container" class="rows-container"></div>
+    </section>
+  </main>
+  ${hostScript}
+  <script ${nonceAttribute} src="${jsUri}"></script>
+</body>
+</html>
